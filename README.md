@@ -7,10 +7,10 @@ The evaluation is performed using the IoTPot Dataset. To ensure privacy, this re
 The folder and file descriptions of the repository are as follows:
 
 - **malFcYASEval/**
-  - **Src/**: source code
+  - **Src/**: 
     - ELFEntry\ELFMiner\ELFOpcode\FileEntry\ImgHaralick\StrRFEDFrank/: encompass each model development pipeline including feature engineering, model training, and testing
     - ResultsComp/: results analysis
-  - **Figure/**: result figures
+  - **Figure/**:
     - RQ1-4/: each question result
     - ModelAnaly/: the model analysis results
   - README.md
