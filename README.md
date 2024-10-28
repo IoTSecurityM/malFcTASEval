@@ -11,7 +11,7 @@ The folder and file descriptions of the repository are as follows:
     - ELFEntry\ELFMiner\ELFOpcode\FileEntry\ImgHaralick\StrRFEDFrank/: encompass each model development pipeline including feature engineering, model training, and testing
     - ResultsComp/: results analysis
   - **Figure/**:
-    - RQ1-4/: each question result
+    - Train\RQ1\RQ2\RQ3\RQ4/: each question result
     - ModelAnaly/: the model analysis results
   - README.md
   
