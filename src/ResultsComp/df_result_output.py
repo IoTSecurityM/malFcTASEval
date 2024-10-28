@@ -178,12 +178,12 @@ def model_filter():
     train_who_results_df = train_who_results_df.groupby(["train_year", "train_alg", "train_arch", "model"], as_index=False).mean()
     train_who_results_df = train_who_results_df[train_who_results_df['Performance']>=0.9]    
     
-    # train_who_results_df = pd.read_csv('../../Results/samespa_result.csv')
-    # train_who_results_df = train_who_results_df[train_who_results_df['metric'] == 'f1'].drop(columns=["metric"])
-    # train_who_results_df = train_who_results_df[train_who_results_df['train_arch']==train_who_results_df['test_arch']].drop(columns=["test_arch"])
-    # train_who_results_df = train_who_results_df[train_who_results_df['train_year']==train_who_results_df['Test Year']].drop(columns=["Test Year"])
-    # train_who_results_df = train_who_results_df.groupby(["train_year", "train_alg", "train_arch", "model"], as_index=False).mean()
-    # train_who_results_df = train_who_results_df[train_who_results_df['Performance']>=0.9]    
+    train_who_results_df = pd.read_csv('../../Results/samespa_result.csv')
+    train_who_results_df = train_who_results_df[train_who_results_df['metric'] == 'f1'].drop(columns=["metric"])
+    train_who_results_df = train_who_results_df[train_who_results_df['train_arch']==train_who_results_df['test_arch']].drop(columns=["test_arch"])
+    train_who_results_df = train_who_results_df[train_who_results_df['train_year']==train_who_results_df['Test Year']].drop(columns=["Test Year"])
+    train_who_results_df = train_who_results_df.groupby(["train_year", "train_alg", "train_arch", "model"], as_index=False).mean()
+    train_who_results_df = train_who_results_df[train_who_results_df['Performance']>=0.9]    
     
     test_who_results_df = pd.read_csv("../../Results/samespa_result.csv")
     test_who_results_df = test_who_results_df[test_who_results_df['metric'] == 'f1'].drop(columns=["metric"]).reset_index(drop=True)

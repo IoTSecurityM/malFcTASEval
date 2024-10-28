@@ -94,86 +94,68 @@ def optimal_results(dtanno_file):
             spa_whofol_results[name][sheetname] = {} 
             
             print(f"- {name}:")
-    #         for test_year in year_list:
+            for test_year in year_list:
                 
-    #             print(f"-- {test_year}") 
-    #             whofol_results["acc"][name][sheetname].setdefault(test_year, {})
-    #             whofol_results["f1"][name][sheetname].setdefault(test_year, {})
+                print(f"-- {test_year}") 
+                whofol_results["acc"][name][sheetname].setdefault(test_year, {})
+                whofol_results["f1"][name][sheetname].setdefault(test_year, {})
                 
-    #             spa_whofol_results[name][sheetname].setdefault(test_year, {})
+                spa_whofol_results[name][sheetname].setdefault(test_year, {})
                 
-    #             for test_arch in arch_list:
+                for test_arch in arch_list:
                 
-    #                 test_df = test_fea_df[(test_fea_df['year'] == test_year) & (test_fea_df['arch'] == test_arch)] 
+                    test_df = test_fea_df[(test_fea_df['year'] == test_year) & (test_fea_df['arch'] == test_arch)] 
                     
-    #                 X_test = test_df['data'].apply(ast.literal_eval).apply(lambda x: ' '.join(x))   
-    #                 y_test = test_df['label']
+                    X_test = test_df['data'].apply(ast.literal_eval).apply(lambda x: ' '.join(x))   
+                    y_test = test_df['label']
                     
-    #                 X_test = vectorizer.transform(X_test)
+                    X_test = vectorizer.transform(X_test)
                     
-    #                 # Make predictions on the test data
-    #                 y_pred = best_model.predict(X_test)
+                    # Make predictions on the test data
+                    y_pred = best_model.predict(X_test)
                     
-    #                 # Calculate accuracy and F1-score
-    #                 accuracy = accuracy_score(y_test, y_pred)
-    #                 f1 = f1_score(y_test, y_pred, average='macro')
+                    # Calculate accuracy and F1-score
+                    accuracy = accuracy_score(y_test, y_pred)
+                    f1 = f1_score(y_test, y_pred, average='macro')
                                        
-    #                 whofol_results["acc"][name][sheetname][test_year][test_arch] = accuracy
-    #                 whofol_results["f1"][name][sheetname][test_year][test_arch] = f1
+                    whofol_results["acc"][name][sheetname][test_year][test_arch] = accuracy
+                    whofol_results["f1"][name][sheetname][test_year][test_arch] = f1
                     
-    #                 print(f"--- {test_arch} - Accuracy: {accuracy:.4f}, F1-Score: {f1:.4f}")   
+                    print(f"--- {test_arch} - Accuracy: {accuracy:.4f}, F1-Score: {f1:.4f}")   
                     
-    #                 report = classification_report(y_test, y_pred, output_dict=True)
-    #                 class_metrics = {}
+                    report = classification_report(y_test, y_pred, output_dict=True)
+                    class_metrics = {}
 
-    #                 for label, metrics in report.items():
-    #                     if label.isdigit():  # Only process actual class labels, ignore 'accuracy', 'macro avg', 'weighted avg'
-    #                         class_metrics[label] = {
-    #                             'precision': metrics['precision'],
-    #                             'recall': metrics['recall'],
-    #                             'f1_score': metrics['f1-score']
-    #                         }                   
+                    for label, metrics in report.items():
+                        if label.isdigit():  # Only process actual class labels, ignore 'accuracy', 'macro avg', 'weighted avg'
+                            class_metrics[label] = {
+                                'precision': metrics['precision'],
+                                'recall': metrics['recall'],
+                                'f1_score': metrics['f1-score']
+                            }                   
                                        
-    #                 spa_whofol_results[name][sheetname][test_year][test_arch] = class_metrics
+                    spa_whofol_results[name][sheetname][test_year][test_arch] = class_metrics
                     
-    #                 print(f"--- {test_arch} - F1-Score: {class_metrics}")
+                    print(f"--- {test_arch} - F1-Score: {class_metrics}")
   
         
-    # result_path = "../../Results/SamSpa/FileEntry/FileEntry"+dtanno_file[0:-5]+".txt" 
-    # with open(result_path, 'r') as file:
-    #     content = file.read()
-    #     exist_whofol_results = json.loads(content)
-    # exist_whofol_results['acc']['MLP'] = whofol_results['acc']['MLP']
-    # exist_whofol_results['f1']['MLP'] = whofol_results['f1']['MLP']
-    # with open(result_path, 'w') as f:
-    #     json.dump(exist_whofol_results, f, indent=4)     
+    result_path = "../../Results/SamSpa/FileEntry/FileEntry"+dtanno_file[0:-5]+".txt" 
+    with open(result_path, 'w') as f:
+        json.dump(whofol_results, f, indent=4)     
     
-    # train_result_path = "../../Results/SamSpa/FileEntry/FileEntry"+dtanno_file[0:-5]+"_train.txt" 
-    # with open(train_result_path, 'r') as file:
-    #     content = file.read()
-    #     exist_train_result = json.loads(content)
-    # exist_train_result['acc']['MLP'] = train_results['acc']['MLP']
-    # exist_train_result['f1']['MLP'] = train_results['f1']['MLP']
-    # with open(train_result_path, 'w') as f:
-    #     json.dump(exist_train_result, f, indent=4)     
+    train_result_path = "../../Results/SamSpa/FileEntry/FileEntry"+dtanno_file[0:-5]+"_train.txt" 
+    with open(train_result_path, 'w') as f:
+        json.dump(train_results, f, indent=4)     
         
-    # spa_result_path = "../../Results/SamSpa/SpaResults/FileEntry/FileEntry"+dtanno_file[0:-5]+".txt" 
-    # with open(spa_result_path, 'r') as file:
-    #     content = file.read()
-    #     exist_spa_whofol_results = json.loads(content)    
-    # exist_spa_whofol_results['MLP'] = spa_whofol_results['MLP']
-    # with open(spa_result_path, 'w') as f:
-    #     json.dump(exist_spa_whofol_results, f, indent=4)    
+    spa_result_path = "../../Results/SamSpa/SpaResults/FileEntry/FileEntry"+dtanno_file[0:-5]+".txt" 
+    with open(spa_result_path, 'w') as f:
+        json.dump(spa_whofol_results, f, indent=4)    
     
     spa_train_result_path = "../../Results/SamSpa/SpaResults/FileEntry/FileEntry"+dtanno_file[0:-5]+"_train.txt" 
-    # with open(spa_train_result_path, 'r') as file:
-    #     content = file.read()
-    #     exist_spa_train_results = json.loads(content)    
-    # exist_spa_train_results['MLP'] = spa_train_results['MLP']
     with open(spa_train_result_path, 'w') as f:
         json.dump(spa_train_results, f, indent=4) 
         
 
 if __name__ == "__main__":
-    for dtanno_file in ['dt'+str(i)+".xlsx" for i in range(0,3)]:
+    for dtanno_file in ['dt'+str(i)+".xlsx" for i in range(0,10)]:
         optimal_results(dtanno_file)   

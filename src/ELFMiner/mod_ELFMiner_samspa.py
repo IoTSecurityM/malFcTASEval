@@ -149,5 +149,5 @@ def optimal_results(dtanno_file):
         
 
 if __name__ == "__main__":
-    for dtanno_file in ['dt'+str(i)+".xlsx" for i in range(0,5)]:
+    for dtanno_file in ['dt'+str(i)+".xlsx" for i in range(0,10)]:
         optimal_results(dtanno_file)   
