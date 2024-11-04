@@ -6,7 +6,7 @@ The evaluation is performed using the [IoTPot](https://sec.ynu.codes/iot/) Datas
 
 The folder and file descriptions of the repository are as follows:
 
-- **malFcYASEval/**
+- **malFcTASEval/**
   - **Src/**: 
     - ELFEntry\ELFMiner\ELFOpcode\FileEntry\ImgHaralick\StrRFEDFrank/: encompass each model development pipeline including feature engineering, model training, and testing
     - ResultsComp/: results analysis
